@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mekala Tharun Kumar - Front-End Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            scroll-behavior: smooth;
+            padding-top: 4rem; /* Height of the fixed navbar (h-16 = 4rem) */
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 11px; /* (24px icon width / 2) - (2px line width / 2) = 11px */
+            top: 32px;
+            height: calc(100% - 32px);
+            width: 2px;
+            background-color: #e2e8f0; /* slate-200 */
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Typewriter Animation - Adjusted for better responsiveness */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #6366f1; /* indigo-500 */
+            white-space: nowrap; /* Keep on one line for effect */
+            margin: 0 auto;
+            /* letter-spacing removed from here for better fit on small screens */
+            animation:
+                typing 3.5s steps(40, end) forwards, /* Added forwards to retain final state */
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% } /* 100% of the intrinsic width of the content */
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #6366f1; } /* indigo-500 */
+        }
+        .nav-link-active {
+            color: #4f46e5; /* indigo-600 */
+            font-weight: 600;
+        }
+        .nav-link-active::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 2px;
+            background: #4f46e5; /* indigo-600 */
+            margin: 4px auto 0;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="text-2xl font-bold text-indigo-600 hover:text-indigo-700 transition">MTK</a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-indigo-600 transition">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#experience" class="nav-link text-gray-700 hover:text-indigo-600 transition">Experience</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none p-2 rounded-md hover:bg-gray-100">
+                        <i id="menu-icon" class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md">About</a>
+                <a href="#skills" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md">Skills</a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md">Projects</a>
+                <a href="#experience" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md">Experience</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 text-center md:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Mekala Tharun Kumar</h1>
+                    <!-- Adjusted font sizes and removed fixed height for typewriter effect -->
+                    <div class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-6 flex items-center justify-center md:justify-start min-h-[2.5rem] sm:min-h-[3rem] w-full max-w-full">
+                        <span class="typewriter">Front-End Developer & Healthcare Technologist</span>
+                    </div>
+                    <p class="text-lg mb-8 leading-relaxed">
+                        Blending a background in pharmacology with strong front-end development skills to create responsive, user-friendly web applications. Passionate about clean UI design and interactive user experiences.
+                    </p>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 shadow-md hover:shadow-lg transition transform hover:scale-105">Contact Me</a>
+                        <a href="#projects" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-indigo-600 transition transform hover:scale-105">View Projects</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-indigo-100 rounded-full overflow-hidden shadow-xl border-4 border-white/50">
+                            <img src="https://raw.githubusercontent.com/tharunkumarmekala/Resources/8519269c4f318bda302b92f1f75e8570be925a07/IMG_20250201_212520_670.jpg" alt="Mekala Tharun Kumar - Front-End Developer" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-code text-indigo-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Currently building</p>
+                                    <p class="font-medium text-gray-800">Interactive Web Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="w-56 h-72 sm:w-64 sm:h-80 rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition-transform">
+                        <img src="https://raw.githubusercontent.com/tharunkumarmekala/Resources/main/Tharun.jpg" alt="About Mekala Tharun Kumar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Who am I?</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        I'm a passionate and detail-oriented Front-End Developer blending a strong background in pharmacology with robust web development skills. My goal is to create responsive, user-friendly web applications, especially those integrating ML for healthcare. I have practical experience building content-driven platforms and utility websites, focusing on clean UI design and interactive user experiences.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2 flex items-center"><i class="fas fa-user-circle text-indigo-500 mr-2"></i>Personal Details</h4>
+                            <ul class="text-gray-600 space-y-1 pl-6">
+                                <li><span class="font-medium">Name:</span> Mekala Tharun Kumar</li>
+                                <li><span class="font-medium">Location:</span> Nellore, Andhra Pradesh, India</li>
+                                <li><span class="font-medium">Email:</span> tharunkumar39429@gmail.com</li>
+                                <li><span class="font-medium">Phone:</span> +91-9502322204</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2 flex items-center"><i class="fas fa-graduation-cap text-indigo-500 mr-2"></i>Education</h4>
+                            <ul class="text-gray-600 space-y-1 pl-6">
+                                <li><span class="font-medium">M.Pharm</span> | SV University | Majors: Pharmacology</li>
+                                <li><span class="font-medium">B.Pharm</span> | Sun Institute of Pharmaceutical Sciences</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700 transition transform hover:scale-105">Hire Me</a>
+                        <a href="#" class="border border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg font-medium hover:bg-indigo-50 transition transform hover:scale-105">Download CV <i class="fas fa-download ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Skills & Expertise</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill Card Example -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Responsive Design</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Building fluid and adaptable user interfaces that look great on any device or screen size.
+                    </p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">ML Integration (Flask)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Connecting front-end applications with Machine Learning models using Flask for dynamic data processing.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">HTML, CSS, JavaScript</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Core expertise in fundamental web technologies for structuring, styling, and interactivity.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Healthcare Web Apps</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Developing user-friendly web applications tailored for healthcare information and tools.
+                    </p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">UI/UX Design Principles</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Applying best practices in User Interface and User Experience design for intuitive and engaging applications.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Version Control & IDEs</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Proficient in Git/GitHub for collaborative development and VS Code for efficient coding.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Technical Toolkit</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">HTML</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">CSS</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">JavaScript</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">Flask</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">Bootstrap</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">Git</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">GitHub</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">Canva</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">Figma</span>
+                    <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium text-sm">VS Code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                A glimpse into my work, showcasing responsive design, ML integration, and user-focused web development.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: Stroke Prediction Web App -->
+                <div class="bg-slate-50 rounded-xl shadow-lg overflow-hidden card-hover transition duration-300 flex flex-col">
+                    <img src="https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=Stroke+Prediction+App" alt="Stroke Prediction Web App" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Stroke Prediction Web App</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            Developed an academic web application for real-time stroke risk prediction, integrating an ML model with a responsive front-end.
+                        </p>
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 mr-2">Flask</span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 mr-2">Machine Learning</span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200">Healthcare</span>
+                        </div>
+                        <a href="#" class="mt-auto text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Alfrez.com -->
+                <div class="bg-slate-50 rounded-xl shadow-lg overflow-hidden card-hover transition duration-300 flex flex-col">
+                    <img src="https://via.placeholder.com/600x400/EC4899/FFFFFF?text=Alfrez.com" alt="Alfrez.com Utility Website" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Alfrez.com - Multi-Tool Utility Website</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            Created a personal project featuring converters, calculators, and PDF tools with a responsive UI, light/dark themes, and animations.
+                        </p>
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 mr-2">HTML/CSS/JS</span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 mr-2">Bootstrap</span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200">UI/UX</span>
+                        </div>
+                        <a href="#" class="mt-auto text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Freelance Web Development -->
+                <div class="bg-slate-50 rounded-xl shadow-lg overflow-hidden card-hover transition duration-300 flex flex-col">
+                     <img src="https://via.placeholder.com/600x400/F59E0B/FFFFFF?text=Freelance+Web+Dev" alt="Freelance Web Development" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Freelance Web Development</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            Provided end-to-end web development services for individuals and small businesses, focusing on responsive designs and clean layouts.
+                        </p>
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 mr-2">Custom Websites</span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 mr-2">Deployment</span>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200">Client Projects</span>
+                        </div>
+                        <a href="#" class="mt-auto text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Experience & Education</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Work Experience (Projects are part of "Experience" in the resume) -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-briefcase text-indigo-600 mr-3"></i> Professional Experience
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="relative pl-8 timeline-item">
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Stroke Prediction Web App (Academic Project)</h4>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">2025</span>
+                                </div>
+                                <ul class="text-gray-600 space-y-2 list-disc pl-5 text-sm">
+                                    <li>Developed a web application for real-time stroke risk prediction using an ML model.</li>
+                                    <li>Designed a responsive front-end with user input forms and displayed health recommendations.</li>
+                                    <li>Utilized Flask for backend integration and ML model serving.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative pl-8 timeline-item">
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Alfrez.com – Personal Project</h4>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">2024 - Present</span>
+                                </div>
+                                <ul class="text-gray-600 space-y-2 list-disc pl-5 text-sm">
+                                    <li>Created a multi-tool utility website offering converters, calculators, and PDF tools.</li>
+                                    <li>Designed category-wise layout, responsive UI, light/dark themes, and animation effects.</li>
+                                    <li>Developed using HTML, CSS, JavaScript, and Bootstrap.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative pl-8 timeline-item">
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Freelance Web Development</h4>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">Since 2023</span>
+                                </div>
+                                <ul class="text-gray-600 space-y-2 list-disc pl-5 text-sm">
+                                    <li>Built custom websites for individuals and small businesses.</li>
+                                    <li>Delivered responsive designs, clean layouts, and provided end-to-end development.</li>
+                                    <li>Included deployment and minor backend integration for various projects.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative pl-8"> <!-- No timeline line for the last item in this section if it's the last one -->
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Personal Portfolio Website</h4>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">2023</span>
+                                </div>
+                                <ul class="text-gray-600 space-y-2 list-disc pl-5 text-sm">
+                                    <li>Developed a personal portfolio site to showcase projects and skills.</li>
+                                    <li>Focused on UI presentation, smooth animations, and device responsiveness.</li>
+                                    <li>Built entirely with HTML, CSS, and JavaScript.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Certifications -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-graduation-cap text-indigo-600 mr-3"></i> Education & Certs
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="relative pl-8 timeline-item">
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Master of Pharmacy</h4>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">Pursuing</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Majors: Pharmacology, SV University</p>
+                            </div>
+                        </div>
+                        <div class="relative pl-8 timeline-item">
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">Bachelor of Pharmacy</h4>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">Completed</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Sun Institute of Pharmaceutical Sciences</p>
+                            </div>
+                        </div>
+                         <div class="relative pl-8 timeline-item"> 
+                            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white shadow-md"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h4 class="text-lg font-semibold text-gray-800 mb-3">Certifications</h4>
+                                <ul class="text-gray-600 space-y-1 list-disc pl-5 text-sm">
+                                    <li>Front-End Development – Coursera</li>
+                                    <li>JavaScript Basics – freeCodeCamp</li>
+                                    <li>Git & GitHub – Udemy</li>
+                                    <li>UI/UX Design – Skillshare</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Strengths (moved from original "Projects" area) -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-8 text-center">
+                    Key Strengths & Extracurriculars
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center card-hover">
+                        <div class="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-desktop text-indigo-600 text-xl"></i>
+                        </div>
+                        <h4 class="text-md font-semibold text-gray-800 mb-1">Responsive Design Focus</h4>
+                        <p class="text-gray-600 text-xs">Ensuring optimal viewing across devices.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center card-hover">
+                        <div class="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-paint-brush text-indigo-600 text-xl"></i>
+                        </div>
+                        <h4 class="text-md font-semibold text-gray-800 mb-1">Clean UI Design</h4>
+                        <p class="text-gray-600 text-xs">Aesthetic and intuitive user interfaces.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center card-hover">
+                        <div class="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-video text-indigo-600 text-xl"></i>
+                        </div>
+                        <h4 class="text-md font-semibold text-gray-800 mb-1">Digital Content Creation</h4>
+                        <p class="text-gray-600 text-xs">YouTube, Social Media Handling & Design.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md text-center card-hover">
+                        <div class="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-hand-holding-heart text-indigo-600 text-xl"></i>
+                        </div>
+                        <h4 class="text-md font-semibold text-gray-800 mb-1">Community Engagement</h4>
+                        <p class="text-gray-600 text-xs">Active in volunteer and community work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row bg-slate-50 p-6 sm:p-8 rounded-xl shadow-xl">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-indigo-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Location</h4>
+                                <p class="text-gray-600">Nellore, Andhra Pradesh, India</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-indigo-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Email</h4>
+                                <a href="mailto:tharunkumar39429@gmail.com" class="text-indigo-600 hover:underline">tharunkumar39429@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-indigo-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Phone</h4>
+                                <a href="tel:+919502322204" class="text-indigo-600 hover:underline">+91-9502322204</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <h4 class="font-medium text-gray-800 mb-4">Connect with me</h4>
+                        <div class="flex space-x-3">
+                            <a href="#" aria-label="LinkedIn Profile" class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center text-indigo-600 hover:bg-indigo-200 transition transform hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="GitHub Profile" class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center text-indigo-600 hover:bg-indigo-200 transition transform hover:scale-110"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Twitter Profile" class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center text-indigo-600 hover:bg-indigo-200 transition transform hover:scale-110"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Medium Profile" class="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center text-indigo-600 hover:bg-indigo-200 transition transform hover:scale-110"><i class="fab fa-medium"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <form class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
+                        <div class="mb-5">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                        </div>
+                        <div class="mb-5">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                        </div>
+                        <div class="mb-5">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition transform hover:scale-105">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <span class="text-xl font-bold">Mekala Tharun Kumar</span>
+                    <p class="text-gray-400 mt-1 text-sm">Front-End Developer & Healthcare Technologist</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#home" class="text-gray-400 hover:text-white transition">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© <span id="currentYear"></span> Mekala Tharun Kumar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-indigo-700 focus:outline-none ring-2 ring-offset-2 ring-offset-slate-50 ring-indigo-500">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('hidden');
+            if (isOpen) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
+        });
+
+        // Smooth scrolling and active nav link highlighting
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        const sections = document.querySelectorAll('section[id]');
+
+        function changeNavOnScroll() {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Adjust offset as needed, considering navbar height (h-16 = 64px) + some buffer
+                if (pageYOffset >= sectionTop - 90) { 
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        }
+        window.addEventListener('scroll', changeNavOnScroll);
+        changeNavOnScroll(); // Initial check on page load
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 64, // 64px is navbar height (h-16)
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open and clicked
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
